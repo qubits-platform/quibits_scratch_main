@@ -4,15 +4,17 @@
 
 .stage-header-wrapper {
     position: relative;
+    
 }
 
 .stage-header-wrapper-overlay {
+    
     position: fixed;
-    background-color: rgb(232, 237, 241);
     top: 0;
     left: 0;
     right: 0;
     z-index: $z-index-stage-header;
+    
 }
 
 .stage-menu-wrapper {
@@ -22,8 +24,8 @@
     flex-shrink: 0;
     align-items: center;
     height: $stage-menu-height;
-    padding-top: $space;
-    padding-bottom: $space;
+
+    /* padding-top: $space; */
 }
 
 .embed-scratch-logo img {
@@ -34,6 +36,12 @@
 
 .stage-size-row {
     display: flex;
+}
+
+.stage-size-row-student {
+    display: flex;
+    position: absolute;
+    right: 0.4rem;
 }
 
 .stage-size-toggle-group {
@@ -77,4 +85,51 @@
 
 [dir="rtl"] .stage-button-icon {
     transform: scaleX(-1);
+}
+
+.stage-controls-display{
+    display: block;
+}
+.stage-controls-display-res{
+    display: none;
+}
+.flag-controls-display{
+    display: block;
+}
+.flag-controls-display-res{
+    display: none;
+}
+
+@media (max-width: 1024px) {
+
+.stage-header-wrapper-layout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stage-header-wrapper {
+    position: absolute;
+    top: 2.7rem;
+    left: 20rem;
+}
+.stage-controls-display{
+    display: none;
+}
+.stage-controls-display-res{
+    display: block;
+}
+.flag-controls-display{
+    display: none;
+}
+.flag-controls-display-res{
+    display: block;
+}
+.stage-menu-wrapper {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    flex-shrink: 0;
+    align-items: center;
+    height: $stage-menu-height;
+}
 }

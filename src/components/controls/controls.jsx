@@ -1,71 +1,130 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react';
+import { defineMessages, injectIntl, intlShape } from 'react-intl'
 
-import GreenFlag from '../green-flag/green-flag.jsx';
-import StopAll from '../stop-all/stop-all.jsx';
-import TurboMode from '../turbo-mode/turbo-mode.jsx';
-
-import styles from './controls.css';
+import GreenFlag from '../green-flag/green-flag.jsx'
+import StopAll from '../stop-all/stop-all.jsx'
+import TurboMode from '../turbo-mode/turbo-mode.jsx'
+import { connect } from 'react-redux'
+import logo from './../../lib/assets/download.svg'
+import styles from './controls.css'
+import Reload from '../customi-cons/reload.jsx';
 
 const messages = defineMessages({
-    goTitle: {
-        id: 'gui.controls.go',
-        defaultMessage: 'Go',
-        description: 'Green flag button title'
-    },
-    stopTitle: {
-        id: 'gui.controls.stop',
-        defaultMessage: 'Stop',
-        description: 'Stop button title'
-    }
-});
+  goTitle: {
+    id: 'gui.controls.go',
+    defaultMessage: 'Go',
+    description: 'Green flag button title',
+  },
+  stopTitle: {
+    id: 'gui.controls.stop',
+    defaultMessage: 'Stop',
+    description: 'Stop button title',
+  },
+})
 
 const Controls = function (props) {
-    const {
-        active,
-        className,
-        intl,
-        onGreenFlagClick,
-        onStopAllClick,
-        turbo,
-        ...componentProps
-    } = props;
-    return (
+  const greenFlagRef = React.useRef(null);
+  const {
+    active,
+    className,
+    intl,
+    onGreenFlagClick,
+    onStopAllClick,
+    onSpriteFlagClick,
+    turbo,
+    spriteClicked,
+    flagClicked,
+    isFullScreen,
+    currentLayout,
+    handleGreenbuttonClick,
+    ...componentProps
+  } = props
+
+
+  const handleReload = () => {
+    window.parent.postMessage('reloadIframe', '*');
+  };
+
+  return (
+    <div className={classNames(currentLayout==='student'&&styles.controlsContainerStudent|| currentLayout==='teacher'&&styles.controlsContainerTeacher||currentLayout==='normal'&&styles.controlsContainer, className)} {...componentProps}>
+      
+      {!isFullScreen && (
         <div
-            className={classNames(styles.controlsContainer, className)}
-            {...componentProps}
+          className={
+            currentLayout === 'student' ? (spriteClicked?styles.spriteIconBgStudent:styles.spriteIconBgStudentHide) :
+            currentLayout === 'teacher' ? (spriteClicked?styles.spriteIconBgTeacher:styles.spriteIconBgTeacherHide) :
+            `${spriteClicked ? styles.spriteIconBg : styles.spriteIconHide}`
+          }
+          onClick={onSpriteFlagClick}
         >
-            <GreenFlag
-                active={active}
-                title={intl.formatMessage(messages.goTitle)}
-                onClick={onGreenFlagClick}
-            />
-            <StopAll
-                active={active}
-                title={intl.formatMessage(messages.stopTitle)}
-                onClick={onStopAllClick}
-            />
-            {turbo ? (
-                <TurboMode />
-            ) : null}
+          <div className={styles.spriteImageOuter} data-tooltip="Open Sprite Panel">
+              {/* <img className={styles.spriteImage} draggable={false} src={logo} /> */}
+              Sprite Panel
+          </div>
         </div>
-    );
-};
+      )}
+
+     {currentLayout!=='teacher' && 
+        <div 
+          onClick={handleGreenbuttonClick}
+          className={
+            currentLayout === 'student' ? styles.greenButton : 
+            currentLayout === 'normal' ? styles.greenButtonNormal : 
+            ''
+          }
+        >
+          <div className={flagClicked ? styles.screenStage : styles.screenStageHide}  data-tooltip="Open Stage">
+            Stage
+          </div>
+        </div>
+      }
+
+     <div onClick={handleReload} className={styles.reloadButton} data-tooltip="Reload" ><Reload /></div>
+     
+      <div ref={greenFlagRef} className={styles.redGreenButtons}>
+     
+      <div data-tooltip="Green Flag" >
+        <GreenFlag
+          active={active}
+          title={intl.formatMessage(messages.goTitle)}
+          onClick={onGreenFlagClick}
+        />
+      </div>
+      <div data-tooltip="Stop" >
+        <StopAll
+          active={active}
+          title={intl.formatMessage(messages.stopTitle)}
+          onClick={onStopAllClick}
+        />
+      </div>
+      </div>
+
+      {turbo ? <TurboMode /> : null}
+    </div>
+  )
+}
 
 Controls.propTypes = {
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    intl: intlShape.isRequired,
-    onGreenFlagClick: PropTypes.func.isRequired,
-    onStopAllClick: PropTypes.func.isRequired,
-    turbo: PropTypes.bool
-};
+  active: PropTypes.bool,
+  className: PropTypes.string,
+  intl: intlShape.isRequired,
+  onGreenFlagClick: PropTypes.func.isRequired,
+  onStopAllClick: PropTypes.func.isRequired,
+  turbo: PropTypes.bool,
+}
 
 Controls.defaultProps = {
-    active: false,
-    turbo: false
-};
+  active: false,
+  turbo: false,
+}
 
-export default injectIntl(Controls);
+const mapStateToProps = (state) => ({
+  costumeURLFax: state.scratchGui.vmStatus.costumeURLFax,
+  spriteClicked: state.scratchGui.vmStatus.spriteClicked,
+  isFullScreen: state.scratchGui.mode.isFullScreen,
+  flagClicked: state.scratchGui.vmStatus.flagClicked,
+})
+
+export default injectIntl(connect(mapStateToProps, null)(Controls))

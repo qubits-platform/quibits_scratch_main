@@ -14,7 +14,31 @@
     overflow: hidden;
 
     /* @todo: This is for overriding the value being set somewhere. Where is it being set? */
-    background-color: transparent;
+    background-color: none;
+
+    /* Allow custom touch handling to prevent scrolling on Edge */
+    touch-action: none;
+
+    /* Make sure border is not included in size calculation */
+    box-sizing: content-box !important;
+
+    /* enforce overflow + reset position of absolutely-positioned children */
+    position: relative;
+}
+
+.stage-noborder {
+    /*
+        Fixes a few extra pixels of margin/padding, that adds on to the bottom
+        of the element, which messes up the chrome padding consistency
+    */
+    display: block;
+
+    border-radius: $space;
+    /* border: $stage-standard-border-width solid $ui-black-transparent; */
+    overflow: hidden;
+
+    /* @todo: This is for overriding the value being set somewhere. Where is it being set? */
+    background-color: none;
 
     /* Allow custom touch handling to prevent scrolling on Edge */
     touch-action: none;
@@ -30,6 +54,17 @@
     border: $stage-full-screen-border-width solid rgb(126, 133, 151);
 }
 
+.canvas-pos{
+    display: none;
+}
+.relative-container {
+    position: relative;
+}
+
+.renderer {
+    height: 100%;
+    width: 100%;
+}
 .with-color-picker {
     cursor: none;
     z-index: $z-index-stage-with-color-picker;
@@ -48,6 +83,7 @@
 
 .stage-wrapper {
     position: relative;
+    
 }
 
 /* we want stage overlays to all be positioned in the same spot as the stage, but can't put them inside the border
@@ -111,7 +147,7 @@ stage doesn't "spill" out from under its rounded corners. instead, shift these o
     background: $looks-transparent;
     border: 2px solid $looks-secondary;
     border-radius: 0.5rem;
-    animation-name: flash;
+    /* animation-name: flash; */
     animation-duration: 0.75s;
     animation-fill-mode: forwards; /* Leave at 0 opacity after animation */
 }
@@ -151,4 +187,32 @@ stage doesn't "spill" out from under its rounded corners. instead, shift these o
 @keyframes flash {
     0% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+@media (max-width: 1024px) {
+    .stage{
+        border: none;
+    }
+    .canvas-pos{
+        cursor: pointer;
+        position: absolute;
+        top: 0.3rem;
+        right: 0.3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        display: block;
+        border-radius: 2px;
+        border: 1px solid #cccccc;
+        color: #801d80;
+        background-color: #d7c4d7;
+    }
+    .canvas-pos:hover{
+        color: white;
+        background-color: #801d80;
+        transition: 0.1s ease-in-out;
+    }
+    .relative-container {
+        position: relative;
+    }
+
 }

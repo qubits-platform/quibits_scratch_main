@@ -1,4 +1,4 @@
-import {defineMessages} from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
     backdrop: {
@@ -29,6 +29,16 @@ export default defineMessages({
     loadFromComputerTitle: {
         id: 'gui.sharedMessages.loadFromComputerTitle',
         defaultMessage: 'Load from your computer',
+        description: 'Title for uploading a project from your computer'
+    },
+    loadFromLocalStorage: {
+        id: 'gui.sharedMessages.loadFromLocalStorages',
+        defaultMessage: 'Load from your Local Storage',
+        description: 'Title for uploading a project from your computer'
+    },
+    saveToLocalStorage: {
+        id: 'gui.sharedMessages.saveToLocalStorage',
+        defaultMessage: 'Save to your Local Storage',
         description: 'Title for uploading a project from your computer'
     }
 });
