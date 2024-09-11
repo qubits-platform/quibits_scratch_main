@@ -29,6 +29,9 @@ const baseConfig = new ScratchWebpackConfigBuilder({
       },
     },
     resolve: {
+      alias: {
+        fs: false,
+      },
       fallback: {
         Buffer: require.resolve('buffer/'),
         stream: require.resolve('stream-browserify'),

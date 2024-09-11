@@ -39,6 +39,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.3",
     "@microbit/microbit-universal-hex": "^0.2.2",
+    "@tensorflow-models/speech-commands": "^0.5.4",
     "arraybuffer-loader": "^1.0.6",
     "autoprefixer": "^9.0.1",
     "balance-text": "^3.3.1",
@@ -98,7 +99,7 @@
     "scratch-render-fonts": "^1.0.2",
     "scratch-storage": "^2.3.1",
     "scratch-svg-renderer": "^2.2.0",
-    "scratch-vm": "^4.2.0",
+    "scratch-vm": "github:qubits-platform/scratch-vm",
     "startaudiocontext": "^1.2.1",
     "style-loader": "^0.23.0",
     "text-encoding": "^0.7.0",
