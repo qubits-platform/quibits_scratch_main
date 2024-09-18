@@ -294,15 +294,17 @@ class MenuBarGuiSub extends React.Component {
   async onLocalStorageFileUpload() {
     const projectData = await localforage.getItem(this.state.projectName);
     if (projectData) {
-      const buffer = new Uint8Array(
-        projectData.split("").map((char) => char.charCodeAt(0)),
-      ).buffer;
-      await new Promise(resolve => setTimeout(resolve, 500));
-      await this.props.vm.loadProject(buffer);
+        const buffer = new Uint8Array(
+            projectData.split("").map((char) => char.charCodeAt(0)),
+        ).buffer;
+        await new Promise(resolve => setTimeout(resolve, 500));
+        if (buffer.byteLength > 0) {
+            await this.props.vm.loadProject(buffer);
+        }
     } else {
-      // console.error('No project found in local storage');
+        // console.error('No project found in local storage');
     }
-  }
+}
 
   async onLocalStorageFileUploadTeacher() {
     let base64blocks = await localforage.getItem('loadteacher');

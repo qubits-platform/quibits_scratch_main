@@ -145,8 +145,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 10px;
-    padding-left:  10px;
+    padding-right: 5px;
+    padding-left:  5px;
 }
 
 
@@ -230,14 +230,16 @@
         height: 2rem;
         user-select: none;
         cursor: pointer;
-        display: flex !important;
+        display: flex;
         justify-content: center;
         align-items: center;
         color: rgb(235, 235, 235);
         font-size: 0.7rem;
-        border:1px solid #dedede;
+        border:1px solid #6338b8;
         border-radius: 4px;
-        background-color: #855CD6;
+        padding-right: 10px;
+        padding-left:  10px;
+        background-color: #6338b8;
         white-space: nowrap;
     
     }
@@ -247,18 +249,21 @@
         height: 2rem;
         user-select: none;
         cursor: pointer;
-        display: flex !important;
+        display: flex;
         justify-content: center;
         align-items: center;
-        color: black;
+        color: rgb(255, 255, 255);
         font-size: 0.7rem;
-        border:1px solid #dedede;
+        border:1px solid #855CD6;
         border-radius: 4px;
+        padding-right: 10px;
+        padding-left:  10px;
+        background-color: #855CD6;
         white-space: nowrap;
     
     }
     .sprite-icon-hide:hover{
-        background-color: #f7f7f7;
+        background-color: #8c6ad1;
     }
     .sprite-image-outer {
         position: relative;
@@ -269,8 +274,8 @@
         display: flex !important;
         justify-content: center;
         align-items: center;
-        padding-right: 10px;
-        padding-left:  10px;
+        padding-right: 1px;
+        padding-left:  1px;
     }
     .red-green-buttons{
         width: 100%;
