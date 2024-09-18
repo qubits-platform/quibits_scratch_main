@@ -52,6 +52,9 @@
     border:1px solid #6338b8;
     border-radius: 4px;
     background-color: #6338b8;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
@@ -63,6 +66,9 @@
     border:1px solid #855CD6;
     border-radius: 4px;
     background-color: #855CD6;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .sprite-icon-bg-student-hide:hover{
     background-color: #8c6ad1;
@@ -120,6 +126,9 @@
     border:1px solid #855CD6;
     border-radius: 4px;
     background-color: #6338b8;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
 
 }
 
@@ -131,6 +140,9 @@
     border:1px solid #855CD6;
     border-radius: 4px;
     background-color: #855CD6;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
 
 }
 .sprite-icon-bg-teacher-hide:hover{
