@@ -14,7 +14,7 @@ class Controls extends React.Component {
   }
   handleGreenbuttonClick() {
     this.props.setSpriteClickedState(false)
-    this.props.setFlagClickedState(true)
+    this.props.setFlagClickedState(!this.props.flagClicked)
   }
   handleGreenFlagClick(e) {
     e.preventDefault()
@@ -24,7 +24,16 @@ class Controls extends React.Component {
       if (!this.props.isStarted) {
         this.props.vm.start()
       }
-      this.props.vm.greenFlag()
+      if(this.props.flagClicked === false){
+        this.props.setFlagClickedState(true);
+        setTimeout(() => {
+            this.props.vm.greenFlag();
+        }, 700); 
+    } else {
+        this.props.vm.greenFlag();
+    }
+    
+      
     }
   }
   handleStopAllClick(e) {
