@@ -84,23 +84,22 @@ const Controls = function (props) {
      <div onClick={handleReload} className={styles.reloadButton} data-tooltip="Reload" ><Reload /></div>
      
       <div ref={greenFlagRef} className={styles.redGreenButtons}>
-     
-      <div data-tooltip="Green Flag" >
-        <GreenFlag
-          active={active}
-          title={intl.formatMessage(messages.goTitle)}
-          onClick={onGreenFlagClick}
-        />
+        <div data-tooltip="Green Flag" className={styles.redGreenButtonsSub} >
+          <GreenFlag
+            active={active}
+            title={intl.formatMessage(messages.goTitle)}
+            onClick={onGreenFlagClick}
+          />
+        </div>
+        <div data-tooltip="Stop" className={styles.redGreenButtonsSub} >
+          <StopAll
+            active={active}
+            title={intl.formatMessage(messages.stopTitle)}
+            onClick={onStopAllClick}
+          />
+        </div>
+        {/* <div>asd</div> */}
       </div>
-      <div data-tooltip="Stop" >
-        <StopAll
-          active={active}
-          title={intl.formatMessage(messages.stopTitle)}
-          onClick={onStopAllClick}
-        />
-      </div>
-      </div>
-
       {turbo ? <TurboMode /> : null}
     </div>
   )
