@@ -4,6 +4,7 @@ const SET_STARTED_STATE = 'scratch-gui/vm-status/SET_STARTED_STATE'
 const SET_FLAG_CLICKED_STATE = 'scratch-gui/vm-status/SET_FLAG_CLICKED_STATE'
 const SET_SPRITE_CLICKED_STATE = 'scratch-gui/vm-status/SET_SPRITE_CLICKED_STATE'
 const SET_COSTUME_URL_STATE = 'scratch-gui/vm-status/SET_COSTUME_URL_STATE'
+const SET_AUTO_SAVE_STATE = 'scratch-gui/vm-status/SET_AUTO_SAVE_STATE'
 
 const initialState = {
   running: false,
@@ -11,6 +12,7 @@ const initialState = {
   turbo: false,
   flagClicked: false,
   spriteClicked: false,
+  autoSave: false,
   costumeURLFax: '',
 }
 
@@ -36,6 +38,10 @@ const reducer = function (state, action) {
     case SET_SPRITE_CLICKED_STATE:
       return Object.assign({}, state, {
         spriteClicked: action.spriteClicked,
+      })
+    case SET_AUTO_SAVE_STATE:
+      return Object.assign({}, state, {
+        autoSave: action.autoSave,
       })
     case SET_COSTUME_URL_STATE:
       return Object.assign({}, state, {
@@ -81,6 +87,14 @@ const setSpriteClickedState = function (spriteClicked) {
   }
 }
 
+const setAutoSaveState = function (autoSave) {
+  return {
+    type: SET_AUTO_SAVE_STATE,
+    autoSave: autoSave,
+  }
+}
+
+
 const setCostumeClickedState = function (costumeURLFax) {
   return {
     type: SET_COSTUME_URL_STATE,
@@ -97,4 +111,5 @@ export {
   setFlagClickedState,
   setSpriteClickedState,
   setCostumeClickedState,
+  setAutoSaveState,
 }

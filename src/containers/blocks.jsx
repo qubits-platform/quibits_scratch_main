@@ -30,7 +30,10 @@ import { setConnectionModalExtensionId } from '../reducers/connection-modal'
 import { updateMetrics } from '../reducers/workspace-metrics'
 import { isTimeTravel2020 } from '../reducers/time-travel'
 
+import { setAutoSaveState,setFlagClickedState } from './../reducers/vm-status.js'
 import { activateTab, SOUNDS_TAB_INDEX } from '../reducers/editor-tab'
+import { a } from 'bowser'
+import { set } from 'core-js/core/dict'
 
 const addFunctionListener = (object, property, callback) => {
   const oldFn = object[property]
@@ -73,6 +76,7 @@ class Blocks extends React.Component {
       'onWorkspaceMetricsChange',
       'setBlocks',
       'setLocale',
+      'handleGreenbuttonClick',
     ])
     this.ScratchBlocks.prompt = this.handlePromptStart
     this.ScratchBlocks.statusButtonCallback = this.handleConnectionModalStart
@@ -311,8 +315,12 @@ class Blocks extends React.Component {
         )
       })
     }
+  } 
+  handleGreenbuttonClick() {
+    this.props.setAutoSaveState(!this.props.autoSave);  
   }
   onWorkspaceMetricsChange() {
+   
     const target = this.props.vm.editingTarget
     if (target && target.id) {
       // Dispatch updateMetrics later, since onWorkspaceMetricsChange may be (very indirectly)
@@ -327,6 +335,7 @@ class Blocks extends React.Component {
         })
       }, 0)
     }
+    this.handleGreenbuttonClick()
   }
   onScriptGlowOn(data) {
     this.workspace.glowStack(data.id, true)
@@ -696,6 +705,8 @@ const mapStateToProps = (state) => ({
   customProceduresVisible: state.scratchGui.customProcedures.active,
   workspaceMetrics: state.scratchGui.workspaceMetrics,
   useCatBlocks: isTimeTravel2020(state),
+  autoSave: state.scratchGui.vmStatus.autoSave,
+  flagClicked: state.scratchGui.vmStatus.flagClicked,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -722,6 +733,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateMetrics: (metrics) => {
     dispatch(updateMetrics(metrics))
   },
+  setAutoSaveState: (autoSave) => dispatch(setAutoSaveState(autoSave)),
+  setFlagClickedState: (flagClicked) => dispatch(setFlagClickedState(flagClicked)),
 })
+
 
 export default errorBoundaryHOC('Blocks')(connect(mapStateToProps, mapDispatchToProps)(Blocks))

@@ -273,8 +273,7 @@ class MenuBarGuiSub extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.flagClicked !== prevProps.flagClicked &&
-      this.state.downloadLocalStorageProject
+      this.props.flagClicked !== prevProps.flagClicked || this.props.autoSave !== prevProps.autoSave 
     ) {
       this.onLocalStorageSave(this.state.downloadLocalStorageProject)();
     }
@@ -567,6 +566,7 @@ const mapStateToProps = (state, ownProps) => {
     mode2020: isTimeTravel2020(state),
     modeNow: isTimeTravelNow(state),
     flagClicked: state.scratchGui.vmStatus.flagClicked,
+    autoSave: state.scratchGui.vmStatus.autoSave,
   };
 };
 
