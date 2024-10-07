@@ -167,6 +167,14 @@
     /* visibility: hidden;
     opacity: 0; */
 }
+.stage-canvas-wrapper-teacher{
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 7px;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width: 1024px) {
     .stage-canvas-wrapper-hide{

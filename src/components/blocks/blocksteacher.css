@@ -26,7 +26,7 @@
     height: 55vh !important;
     width: 84vw ;
     margin-top: 0.3rem;
-    left: -47.3vh !important;
+    left: -30% !important;
     border: 1px solid $ui-black-transparent;
     border-top-right-radius: $space;
     border-bottom-right-radius: $space;
@@ -56,7 +56,7 @@
         same for Firefox, so a different solution may be needed for them.
     */
     -ms-overflow-style: none;
-}
+} 
 
 [dir="rtl"] .blocksteacher :global(.blocklyToolboxDiv) {
     border-right: none;
@@ -100,7 +100,8 @@
     min-width: auto;
     min-height: auto;
 }
-
-@media (max-width: 1024px) {
-   
-  }
+@media (min-width: 1025px) {
+    .blocksteacher :global(.injectionDiv) {
+        left: -310px !important; 
+    }
+}
