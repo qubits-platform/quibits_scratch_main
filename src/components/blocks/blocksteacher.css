@@ -102,6 +102,6 @@
 }
 @media (min-width: 1025px) {
     .blocksteacher :global(.injectionDiv) {
-        left: -310px !important; /* Adjust for larger screens */
+        left: -310px !important; 
     }
 }
