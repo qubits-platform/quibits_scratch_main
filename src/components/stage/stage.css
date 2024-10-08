@@ -48,6 +48,7 @@
 
     /* enforce overflow + reset position of absolutely-positioned children */
     position: relative;
+    
 }
 
 .stage.full-screen {
