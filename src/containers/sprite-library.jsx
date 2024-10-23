@@ -9,6 +9,8 @@ import randomizeSpritePosition from '../lib/randomize-sprite-position'
 import spriteTags from '../lib/libraries/sprite-tags'
 
 import LibraryComponent from '../components/library/library.jsx'
+import { setSpriteClickedState } from '../reducers/vm-status.js'
+import { connect } from 'react-redux'
 
 const messages = defineMessages({
   libraryTitle: {
@@ -29,6 +31,7 @@ class SpriteLibrary extends React.PureComponent {
     this.props.vm.addSprite(JSON.stringify(item)).then(() => {
       this.props.onActivateBlocksTab()
     })
+    this.props.setSpriteClickedState(false);
   }
   render() {
     return (
@@ -51,4 +54,8 @@ SpriteLibrary.propTypes = {
   vm: PropTypes.instanceOf(VM).isRequired,
 }
 
-export default injectIntl(SpriteLibrary)
+const mapDispatchToProps = {
+  setSpriteClickedState,
+}
+
+export default injectIntl(connect(null,mapDispatchToProps)(SpriteLibrary))
