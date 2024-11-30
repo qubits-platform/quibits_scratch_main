@@ -60,6 +60,7 @@
 }
 .relative-container {
     position: relative;
+    border: 2px solid #ffffff;
 }
 
 .renderer {
