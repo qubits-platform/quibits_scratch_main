@@ -81,7 +81,7 @@ const Controls = function (props) {
         </div>
       }
 
-     <div onClick={handleReload} className={styles.reloadButton} data-tooltip="Reload" ><Reload /></div>
+     {currentLayout != 'normal' && <div onClick={handleReload} className={styles.reloadButton} data-tooltip="Reload" ><Reload /></div>}
      
       <div ref={greenFlagRef} className={styles.redGreenButtons}>
         <div data-tooltip="Green Flag" className={styles.redGreenButtonsSub} >
