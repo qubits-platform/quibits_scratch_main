@@ -258,6 +258,9 @@ class MenuBarGuiSub extends React.Component {
     } else if(currentLayout === 'student'){
       this.onLocalStorageFileUploadStudent()
     }
+    else if(currentLayout === 'ico'){
+      this.onLocalStorageFileUploadStudent()
+    }
     else {
       localforage.getItem('Current_Project_Name')
         .then(projectName => {
@@ -281,6 +284,7 @@ class MenuBarGuiSub extends React.Component {
 
   async onLocalStorageFileUploadStudent() {
     let base64blocks = await localforage.getItem('ScratchStudentSubmission');
+    console.log('loaded from scratch', base64blocks)
     let binaryString = atob(base64blocks);
     let bytes = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
@@ -292,6 +296,7 @@ class MenuBarGuiSub extends React.Component {
 
   async onLocalStorageFileUpload() {
     const projectData = await localforage.getItem(this.state.projectName);
+    console.log('console projectdata',projectData)
     if (projectData) {
         const buffer = new Uint8Array(
             projectData.split("").map((char) => char.charCodeAt(0)),

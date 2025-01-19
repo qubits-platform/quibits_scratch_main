@@ -48,7 +48,7 @@ const Controls = function (props) {
   };
 
   return (
-    <div className={classNames(currentLayout==='student'&&styles.controlsContainerStudent|| currentLayout==='teacher'&&styles.controlsContainerTeacher||currentLayout==='normal'&&styles.controlsContainer, className)} {...componentProps}>
+    <div className={classNames(currentLayout==='student'&&styles.controlsContainerStudent|| currentLayout==='teacher' && styles.controlsContainerTeacher || (currentLayout!=='student' &&currentLayout!=='student') && styles.controlsContainer, className)} {...componentProps}>
       
       {!isFullScreen && (
         <div
@@ -70,9 +70,7 @@ const Controls = function (props) {
         <div 
           onClick={handleGreenbuttonClick}
           className={
-            currentLayout === 'student' ? styles.greenButton : 
-            currentLayout === 'normal' ? styles.greenButtonNormal : 
-            ''
+            currentLayout === 'student' ? styles.greenButton : styles.greenButtonNormal
           }
         >
           <div className={flagClicked ? styles.screenStage : styles.screenStageHide}  data-tooltip="Open Stage">
